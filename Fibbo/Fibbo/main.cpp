@@ -21,10 +21,13 @@ long fibbonacci();
 
 int main()
 {
-	main_menu();
-	choice_handler(check_choice(funcs));
-	output_handler(chosen_func_number, chosen_func_output);
-	system("PAUSE");
+	do
+	{
+		main_menu();
+		choice_handler(check_choice(funcs));
+		output_handler(chosen_func_number, chosen_func_output);
+		system("PAUSE");
+	} while (true);
 };
 
 
