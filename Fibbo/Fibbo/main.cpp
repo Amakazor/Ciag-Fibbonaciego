@@ -21,10 +21,14 @@ long fibbonacci();
 
 int main()
 {
-	main_menu();
-	choice_handler(check_choice(funcs));
-	output_handler(chosen_func_number, chosen_func_output);
-	system("PAUSE");
+	do
+	{
+		main_menu();
+		choice_handler(check_choice(funcs));
+		if (chosen_func_number == 99) return 0;
+		output_handler(chosen_func_number, chosen_func_output);
+		system("PAUSE");
+	} while (true);
 };
 
 
@@ -36,6 +40,7 @@ void main_menu()
 	cout << "Wybierz w jakim celu chcesz uzyc programu." << endl << endl;
 
 	cout << "1. Aby wyswietlic n-ty element ciagu Fibbonacciego" << endl;
+	cout << endl << "99. Wyjscie" << endl;
 
 }
 
@@ -49,13 +54,13 @@ int check_choice(int functions)
 	{
 		cin >> user_choice;
 		cout << endl;
-		if ((user_choice > functions) || (user_choice < 1))
+		if ((user_choice!=99)&&((user_choice > functions) || (user_choice < 1)))
 		{
 			cout << "O nie! Wybrano zly numer! I co teraz? No?" << endl;
 			cout << "Chyba musisz ponownie wybrac numer. Tym razem zrob to dobrze, okej?" << endl;
 			user_stupidness++;
 		}
-	} while ((user_choice > functions) || (user_choice < 1));
+	} while ((user_choice != 99) && ((user_choice > functions) || (user_choice < 1)));
 	system("CLS");
 	if (user_stupidness > 0)
 	{
@@ -69,8 +74,11 @@ void choice_handler(int checked_choice)
 	switch (checked_choice)
 	{
 	case 1:
-		chosen_func_number = (1);
+		chosen_func_number = 1;
 		chosen_func_output = fibbonacci();
+		break;
+	case 99:
+		chosen_func_number = 99;
 		break;
 	default:
 		break;
